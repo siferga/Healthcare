@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  configserver:
+    container_name: configserver
+    image: siferga/confighealth:latest
+    mem_limit: 700m
+    ports:
+      - "8071:8071"
+    networks:
+      - healthcare-network
+
+  eurekaserver:
+    container_name: eurekaserver
+    image: siferga/eurekahealthcare:latest
+    mem_limit: 700m
+    ports:
+      - "8070:8070"
+    networks:
+      - healthcare-network
+    depends_on:
+      - configserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+
+networks:
+  healthcare-network:
+
