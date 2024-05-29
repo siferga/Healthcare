@@ -1,35 +1,41 @@
-version: "3.8"
+version: "2.20.2"
 
 services:
+
   configserver:
+    image: "siferga/configserver:latest"
     container_name: configserver
-    image: siferga/confighealth:latest
-    mem_limit: 700m
     ports:
       - "8071:8071"
-    networks:
-      - healthcare-network
+    healthcheck:
+        test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+        interval: 10s
+        timeout: 5s
+        retries: 10
+        start_period: 10s
+#    extends:
+#      file: common-config.yml
+#      service: microservise-base-config
 
   eurekaserver:
+    image: siferga/eurekaserver:latest
     container_name: eurekaserver
-    image: siferga/eurekahealthcare:latest
-    mem_limit: 700m
     ports:
       - "8070:8070"
-    networks:
-      - healthcare-network
     depends_on:
-      - configserver
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 15s
-        max_attempts: 3
-        window: 120s
+      configserver:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+#    extends:
+#      file: common-config.yml
+#      service: microservice-configserver-config
     environment:
-      SPRING_PROFILES_ACTIVE: prod
-      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      SPRING_APPLICATION_NAME: "eurekaservice"
 
-networks:
-  healthcare-network:
+
 
