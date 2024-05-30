@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
+        <module name="webapp" />
         <module name="configserver" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="configserver" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="eurekaserver (1)" options="-parameters" />
+      <module name="webapp" options="-parameters" />
     </option>
   </component>
 </project>
