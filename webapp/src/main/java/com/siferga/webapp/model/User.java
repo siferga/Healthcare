@@ -2,8 +2,10 @@ package com.siferga.webapp.model;
 
 //il faut le pousser par feign
 //USER DANS LE MODEL
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
 @Data
