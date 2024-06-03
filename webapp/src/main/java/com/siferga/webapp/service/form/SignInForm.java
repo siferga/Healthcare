@@ -1,4 +1,4 @@
-package com.siferga.webapp.services.form;
+package com.siferga.webapp.service.form;
 
 import lombok.Data;
 
