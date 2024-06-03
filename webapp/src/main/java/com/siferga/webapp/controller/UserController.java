@@ -1,6 +1,7 @@
 package com.siferga.webapp.controller;
 
 import ch.qos.logback.core.model.Model;
+import com.siferga.webapp.services.UserService;
 import com.siferga.webapp.services.form.SignUpForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserSer) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
