@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: client-service
+  cloud:
+    config:
+      uri: http://configserver:8071
+      fail-fast: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:
