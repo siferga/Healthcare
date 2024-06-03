@@ -1,6 +1,6 @@
 package com.siferga.webapp.config;
 
-import com.siferga.webapp.services.form.CustomUserDetailsService;
+import com.siferga.webapp.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,5 +43,6 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+        return  authenticationManagerBuilder.build();
     }
 }
