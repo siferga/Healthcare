@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>Welcome to the Home Page</h1>
+<p th:text="'Hello, ' + ${user.name} + '!'"></p>
+<a href="/logout">Logout</a>
+</body>
+</html>
