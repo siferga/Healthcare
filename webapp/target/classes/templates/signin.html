@@ -14,7 +14,7 @@
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left">
-                <img src="images/feuille.jpg" alt=""/>
+                <img src="/static/images/feuille.jpg" alt=""/>
                 <h3>Welcome in</h3>
                 <p>You don't have un account?</p>
                 <input type="submit" class="btnLogin"name="" th:value="signUp" th:action="@{/signup.html}"/><br/>
@@ -32,10 +32,10 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password *" th:name="password" />
                                 </div>
-<!--                                <div class="form-check text-start mb-3">-->
-<!--                                    <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" th:name="rememberMe">-->
-<!--                                    <label class="form-check-label" for="flexCheckDefault">Remember me</label>-->
-<!--                                </div>-->
+                                <div class="form-check text-start mb-3">
+                                    <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" th:name="rememberMe">
+                                    <label class="form-check-label" for="flexCheckDefault">Remember me</label>
+                                </div>
                                 <button type="submit" class="btn btn">Login</button>
                             </form>
                         </div>
