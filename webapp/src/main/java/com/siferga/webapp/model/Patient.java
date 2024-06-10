@@ -15,7 +15,7 @@ import lombok.*;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patientid;
+    private String patientid;
     private String firstname;
     private String lastname;
     private String gender;
