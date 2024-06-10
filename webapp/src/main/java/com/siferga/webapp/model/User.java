@@ -17,11 +17,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userid;
+    private String userid;
     private String firstname;
     private String lastname;
     @Column(unique = true)
-    private String username;
+    private String email;
     private String password;
 
 
@@ -30,5 +30,5 @@ public class User {
 //    @Enumerated(EnumTy)
 //    private String num<Role>;
 //userdto dans le patient
-    //mapping dans la couche service
+//    mapping dans la couche service
 }
