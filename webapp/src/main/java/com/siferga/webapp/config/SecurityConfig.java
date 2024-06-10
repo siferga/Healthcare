@@ -4,10 +4,12 @@ import com.siferga.webapp.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,17 +24,28 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/bootstrap.min.css","/style.css","/images/**","/signin","/signup").permitAll()
+                        .requestMatchers("/bootstrap.min.css","/style.css","/images/**","/login","/signup").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .loginPage("/signin")
+                        .loginPage("/login")
                         .permitAll().usernameParameter("email").defaultSuccessUrl("/",true)
                 )
                 .logout((logout) -> logout.permitAll());
 
+//        return http.build();
+//        .anyRequest().authenticated())
+//                .http.formLogin(form -> form.loginPage("/login")
+//                .defaultSuccessUrl("/", true)
+//                .permitAll())
+//                .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
+
+//    private UsernamePasswordAuthenticationToken anyRequest() {
+//        return null;
+//    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
     @Bean
