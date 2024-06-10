@@ -10,16 +10,17 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patientid;
+    private String patientid;
     private String firstname;
     private String lastname;
     private String gender;
-    private String birthdate;
+    private String birthday;
     private String address;
     private String phone;
     private String email;
