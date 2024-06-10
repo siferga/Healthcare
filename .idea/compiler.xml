@@ -14,12 +14,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="docker-compose" target="17" />
       <module name="eurekaserver (1)" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="configserver" options="-parameters" />
+      <module name="docker-compose" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="eurekaserver (1)" options="-parameters" />
       <module name="patient" options="-parameters" />
