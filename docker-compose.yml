@@ -1,15 +1,21 @@
 version: "2.20.2"
 
 services:
-  patientdb:
-    container_name: patientdb
-    ports:
-      - 3308:3306
+  mysql:
+    container_name: "healthcare"
+    image: mysql
     environment:
       MYSQL_DATABASE: patientdb
-#    extends:
-#      file: common-config.yml
-#      service: microservice-db-config
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    ports:
+      - 3307:3306
+    networks:
+      - Healthcare-network
 
   configserver:
     image: siferga/configserver
@@ -51,10 +57,10 @@ services:
       - Healthcare-network
 
   patient:
-    image: siferga/
-    container_name:
+    image: siferga/patient
+    container_name: patient
     ports:
-      - "807:807"
+      - "9000:9000"
     depends_on:
       configserver:
         condition: service_healthy
