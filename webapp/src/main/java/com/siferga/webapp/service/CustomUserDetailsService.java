@@ -1,7 +1,6 @@
 package com.siferga.webapp.service;
 
-import com.siferga.patient.model.User;
-import com.siferga.webapp.service.impl.UserServiceImpl;
+import com.siferga.webapp.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             return null;
         }
         return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsername())
+                .username(user.getEmail())
                 .password(user.getPassword())
                 //.roles(user.getRole().name())
                 .build();
