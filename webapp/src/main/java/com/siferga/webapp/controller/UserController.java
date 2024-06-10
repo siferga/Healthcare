@@ -1,8 +1,11 @@
 package com.siferga.webapp.controller;
 
 import ch.qos.logback.core.model.Model;
-import com.siferga.webapp.services.UserService;
-import com.siferga.webapp.services.form.SignUpForm;
+import com.siferga.webapp.model.User;
+import com.siferga.webapp.service.UserServiceImpl;
+import com.siferga.webapp.service.form.SignUpForm;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,37 +13,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
-
-    private final UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserServiceImpl userServiceImpl;
 
     @GetMapping("/")
     public ModelAndView home(Model model) {
         return new ModelAndView("index");
     }
 
-//    @GetMapping ("/home")
-//    public String logOff(){
-//        return "home";
-//    }
-
     @GetMapping ("/logOut")
     public String logOut(){
         return "signin";
     }
 
-    /*********************************** SIGNUP FORM ******************************************/
+    /*********************************** SIGNUP ******************************************/
+
+//    @PostMapping("/signup")
+//    public String registerUser(@ModelAttribute User user) {
+//        userServiceImpl.register(user);
+//        return "redirect:/signin?success";
+//    }
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "signin";
+    }
+
     @PostMapping("/signup")
-    public ModelAndView processRequest(@ModelAttribute("signUpForm")SignUpForm form) {
-        userService.registration(form);
+    public ModelAndView processRequest(@ModelAttribute User user) {
+        userServiceImpl.register(user);
         return new ModelAndView("signin");
     }
     @GetMapping ("/signup")
     public ModelAndView showRegisterForm() {
-        return new ModelAndView("signup","signUpForm",new SignUpForm());
+        return new ModelAndView("signup","user",new User());
+    }
+
+    @GetMapping("/patients")
+    public String getUserLogin (Model model, UserDetails userDetails) {
+        String username = userDetails.getUsername();
+        return "patient/list";
     }
 
 
