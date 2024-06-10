@@ -29,21 +29,25 @@ public class UserController {
 
     /*********************************** SIGNUP ******************************************/
 
-//    @PostMapping("/signup")
-//    public String registerUser(@ModelAttribute User user) {
-//        userServiceImpl.register(user);
-//        return "redirect:/signin?success";
-//    }
+
     @GetMapping("/login")
-    public String getLoginPage() {
-        return "signin";
+    public ModelAndView Login() {
+        return new ModelAndView("signin");
     }
 
     @PostMapping("/signup")
     public ModelAndView processRequest(@ModelAttribute User user) {
         userServiceImpl.register(user);
         return new ModelAndView("signin");
+
     }
+
+    //    @PostMapping("/signup")
+//    public String registerUser(@ModelAttribute User user) {
+//        userServiceImpl.register(user);
+//        return "redirect:/signin?success";
+//    }
+
     @GetMapping ("/signup")
     public ModelAndView showRegisterForm() {
         return new ModelAndView("signup","user",new User());
