@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+
 @RequiredArgsConstructor
 public class UserController {
     private final UserServiceImpl userServiceImpl;
@@ -22,6 +23,10 @@ public class UserController {
         return new ModelAndView("index");
     }
 
+    @GetMapping("/login")
+    public ModelAndView Login() {
+        return new ModelAndView("signin");
+    }
     @GetMapping ("/logOut")
     public String logOut(){
         return "signin";
@@ -30,16 +35,10 @@ public class UserController {
     /*********************************** SIGNUP ******************************************/
 
 
-    @GetMapping("/login")
-    public ModelAndView Login() {
-        return new ModelAndView("signin");
-    }
-
     @PostMapping("/signup")
     public ModelAndView processRequest(@ModelAttribute User user) {
         userServiceImpl.register(user);
         return new ModelAndView("signin");
-
     }
 
     //    @PostMapping("/signup")
