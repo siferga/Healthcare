@@ -2,12 +2,10 @@ package com.siferga.webapp.model;
 
 //il faut le pousser par feign
 //USER DANS LE MODEL
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@Entity
+import lombok.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 @Data
 @Getter
 @Setter
@@ -15,20 +13,14 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String userid;
-    private String firstname;
-    private String lastname;
-    @Column(unique = true)
     private String email;
     private String password;
+    //private Enum role;
+
+ }
 
 
-
-
-//    @Enumerated(EnumTy)
-//    private String num<Role>;
+//    @Enumerated(Enum)
 //userdto dans le patient
 //    mapping dans la couche service
-}
