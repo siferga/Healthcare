@@ -18,4 +18,8 @@ public class UserServiceImpl {
     public User registration(User user) {
         return userRepository.save(user);
     }
+
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
 }
