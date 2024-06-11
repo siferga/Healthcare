@@ -22,29 +22,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
 
-        http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/bootstrap.min.css","/style.css","/images/**","/login","/signup").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll().usernameParameter("email").defaultSuccessUrl("/",true)
-                )
-                .logout((logout) -> logout.permitAll());
-
-//        return http.build();
-//        .anyRequest().authenticated())
-//                .http.formLogin(form -> form.loginPage("/login")
-//                .defaultSuccessUrl("/", true)
-//                .permitAll())
-//                .logout(LogoutConfigurer::permitAll);
+        http.authorizeHttpRequests((requests) -> requests.requestMatchers("/bootstrap.min.css","/style.css","/images/**","/login","/signup").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(form -> form.loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll())
+                .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
-
-//    private UsernamePasswordAuthenticationToken anyRequest() {
-//        return null;
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
