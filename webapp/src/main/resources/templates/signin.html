@@ -24,15 +24,15 @@
                     <h3 class="register-heading">Log in your account</h3>
                     <div class="row register-form1">
                         <div class="col-md-8">
-                            <form th:action="@{/login}" th:object="${user}" method="post">
+                            <form th:action="@{/login}" method="post">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" th:name="username" />
+                                    <input type="text" class="form-control" placeholder="Your Email *" name="email" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" th:name="password" />
+                                    <input type="password" class="form-control" placeholder="Password *" name="password" />
                                 </div>
                                 <div class="form-check text-start mb-3">
-                                    <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" th:name="rememberMe">
+                                    <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" name="rememberMe">
                                     <label class="form-check-label" for="flexCheckDefault">Remember me</label>
                                 </div>
                                 <button type="submit" class="btn btn">Login</button>

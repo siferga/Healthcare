@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patientid;
+    private Long id;
     private String firstname;
     private String lastname;
     private String gender;
