@@ -9,10 +9,12 @@ spring:
   profiles:
     active: "prod"
   datasource:
-    url: jdbc:mysql://localhost:3307/patientdb
+    url: jdbc:mysql://localhost:3307/patientData?createDatabaseIfNotExist= true
     username: root
     password: root
   jpa:
+    hibernate:
+      ddl-auto: update
     show-sql: true
   sql:
     init:
@@ -33,5 +35,5 @@ eureka:
 info:
   app:
     name: "Patient"
-    description: "Healtcare app"
+    description: "Healtcare"
     version: "1.0.0"
