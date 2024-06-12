@@ -48,49 +48,39 @@
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Add an IBAN</h4>
+                            <h4 class="my-0 fw-normal">Patients</h4>
                         </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Add your IBAN</li>
-                                <li>Up to 5 IBAN</li>
-                                <li>Any bank supported</li>
-                                <li>Fully secured</li>
-                            </ul>
-                            <!--<button type="button" class="w-100 btn btn-lg btn" th:href="@{/addIban}">Here</button>-->
-                            <a th:href="@{/addIban}" class="w-100 btn btn-lg btn">Here</a>
+                        <div class="d-grid gap-2 mt-3 mb-4">
+                            <a th:href="@{/addPatient}" class="btn btn-primary col-md-6 mx-auto">Add patient</a>
+                            <a th:href="@{/updatePatient}" class="btn btn-secondary col-md-6 mx-auto">Update patient</a>
+                            <a th:href="@{/deletePatient}" class="btn btn-danger col-md-6 mx-auto">Delete patient</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Transfer to your bank</h4>
+                            <h4 class="my-0 fw-normal">Consultations</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Instant transfer</li>
-                                <li>For free</li>
-                                <li>Wordlwide</li>
-                                <li>Fully secured</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn">Get started</button>
+                            <div class="d-grid gap-2 mt-3 mb-4">
+                                <a th:href="@{/addPatient}" class="btn btn-primary col-md-6 mx-auto">Add consultation</a>
+                                <a th:href="@{/updatePatient}" class="btn btn-secondary col-md-6 mx-auto">Update consultation</a>
+                                <a th:href="@{/deletePatient}" class="btn btn-danger col-md-6 mx-auto">Delete consultation</a>
+                            </div>
+<!--                            <button type="button" class="w-100 btn btn-lg btn">New consultation</button>-->
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Add cash</h4>
+                            <h4 class="my-0 fw-normal">Add</h4>
                         </div>
                         <div class="card-body">
                             <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>With your credit card</li>
-                                <li>For free</li>
-                                <li>Instant deposit</li>
                                 <li>Fully secured</li>
                             </ul>
                             <button type="button" class="w-100 btn btn-lg btn">Here</button>
@@ -99,35 +89,8 @@
                 </div>
             </div>
 
-            <h2 class="display-6 text-center mb-4">My account balance</h2>
+            <h2 class="display-6 text-center mb-4">Text</h2>
 
-            <div class="table-responsive">
-                <table class="table text-center">
-                    <thead>
-                    <tr>
-                        <th style="width: 25%;"></th>
-                        <th style="width: 25%;">User</th>
-                        <th style="width: 25%;">Account</th>
-                        <th style="width: 25%;"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row" class="text-start">Public</th>
-                        <td><svg class="bi" width="24" height="25"><use xlink:href="#check"/></svg></td>
-                        <td><svg class="bi" width="24" height="25"><use xlink:href="#check"/></svg></td>
-                        <td><svg class="bi" width="24" height="25"><use xlink:href="#check"/></svg></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Private</th>
-                        <td></td>
-                        <td><svg class="bi" width="24" height="25"><use xlink:href="#check"/></svg></td>
-                        <td><svg class="bi" width="24" height="25"><use xlink:href="#check"/></svg></td>
-                    </tr>
-                    </tbody>
-
-                </table>
-            </div>
         </main>
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
