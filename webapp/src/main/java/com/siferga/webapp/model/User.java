@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private String userid;
+    private Long id;
     private String email;
     private String password;
     //private Enum role;
