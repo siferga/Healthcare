@@ -25,6 +25,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/bootstrap.min.css","/style.css","/images/**","/login","/signup").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login")
+                        .usernameParameter("email")
                         .defaultSuccessUrl("/", true)
                         .permitAll())
                 .logout(LogoutConfigurer::permitAll);

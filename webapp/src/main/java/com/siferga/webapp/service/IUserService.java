@@ -8,6 +8,6 @@ public interface IUserService {
 
     public User register(User user);
 
-    public User findByUserName(String email);
+    public User findByEmail(String email);
 
 }

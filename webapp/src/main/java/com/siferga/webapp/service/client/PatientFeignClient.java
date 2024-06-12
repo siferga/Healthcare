@@ -11,17 +11,17 @@ import java.util.List;
 
 @FeignClient(name = "patient")
 public interface PatientFeignClient {
-//        @PostMapping (value = "/api/createUser", consumes = "application/json")
-//    public ResponseEntity<User> createUser(com.siferga.webapp.model.User user);
-//
-//    @PostMapping(value = "/api/findUserByUsername",consumes = "application/json")
-//    public ResponseEntity<User> findUserByUsername(@RequestParam String username);
-
-    @PostMapping("/createUser")
+    @RequestMapping (method = RequestMethod.POST, value = "/api/createUser", consumes = "application/json")
     public User createUser(@RequestBody User user);
 
-    @GetMapping("/findUserByUsername")
-    public User findUserByUsername(@RequestParam String email);
+    @RequestMapping (method = RequestMethod.POST, value = "/api/findByEmail",consumes = "application/json")
+    public User findUserByEmail(@RequestBody String email);
+
+//    @PostMapping("/api/createUser")
+//    public User createUser(@RequestBody User user);
+//
+//    @GetMapping("/api/findUserByUsername")
+//    public User findUserByUsername(@RequestParam String email);
 
     @GetMapping(value = "/api/getAll",consumes = "application/json")
     public ResponseEntity<List<Patient>> getAllPatients();
@@ -37,6 +37,8 @@ public interface PatientFeignClient {
 
     @DeleteMapping(value = "/api/deletePatient",consumes = "application/json")
     public void deletePatient(@RequestParam Long id);
+
+
 
 
 }
