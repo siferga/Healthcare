@@ -14,11 +14,11 @@ public class Patient {
     private Long id;
     private String firstname;
     private String lastname;
-    private String gender;
     private LocalDate birthday;
-    private String address;
-    private String phone;
     private String email;
+    private String phone;
+    private String gender;
+    private String address;
 
 }
 
