@@ -31,7 +31,7 @@
 
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Profile</a>
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Patients</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none"  th:href="@{patientList}">Patients</a>
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none"  th:href="@{contactForm}">Contact Us</a>
                     <a class="py-2 link-body-emphasis text-decoration-none" th:href="@{logOut}">Sign out</a>
                 </nav>
@@ -49,11 +49,13 @@
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
                             <h4 class="my-0 fw-normal">Patients</h4>
+
                         </div>
                         <div class="d-grid gap-2 mt-3 mb-4">
-                            <a th:href="@{/addPatient}" class="btn btn-primary col-md-6 mx-auto">Add patient</a>
-                            <a th:href="@{/updatePatient}" class="btn btn-secondary col-md-6 mx-auto">Update patient</a>
-                            <a th:href="@{/deletePatient}" class="btn btn-danger col-md-6 mx-auto">Delete patient</a>
+                            <a th:href="@{/patientList}" class="btn btn-primary col-md-6 mx-auto">List</a>
+                            <a th:href="@{/addPatient}" class="btn btn-primary col-md-6 mx-auto">Add</a>
+                            <a th:href="@{/updatePatient}" class="btn btn-secondary col-md-6 mx-auto">Update</a>
+                            <a th:href="@{/deletePatient}" class="btn btn-danger col-md-6 mx-auto">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -64,9 +66,10 @@
                         </div>
                         <div class="card-body">
                             <div class="d-grid gap-2 mt-3 mb-4">
-                                <a th:href="@{/addPatient}" class="btn btn-primary col-md-6 mx-auto">Add consultation</a>
-                                <a th:href="@{/updatePatient}" class="btn btn-secondary col-md-6 mx-auto">Update consultation</a>
-                                <a th:href="@{/deletePatient}" class="btn btn-danger col-md-6 mx-auto">Delete consultation</a>
+                                <a th:href="@{/patientList}" class="btn btn-primary col-md-6 mx-auto">List</a>
+                                <a th:href="@{/addPatient}" class="btn btn-primary col-md-6 mx-auto">Add</a>
+                                <a th:href="@{/updatePatient}" class="btn btn-secondary col-md-6 mx-auto">Update</a>
+                                <a th:href="@{/deletePatient}" class="btn btn-danger col-md-6 mx-auto">Delete</a>
                             </div>
 <!--                            <button type="button" class="w-100 btn btn-lg btn">New consultation</button>-->
                         </div>
@@ -75,12 +78,11 @@
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Add</h4>
+                            <h4 class="my-0 fw-normal">Other</h4>
                         </div>
                         <div class="card-body">
                             <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
                             <ul class="list-unstyled mt-3 mb-4">
-                                <li>With your credit card</li>
                                 <li>Fully secured</li>
                             </ul>
                             <button type="button" class="w-100 btn btn-lg btn">Here</button>
