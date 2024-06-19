@@ -1,7 +1,9 @@
 package com.siferga.webapp.controller;
 
 import ch.qos.logback.core.model.Model;
+import com.siferga.webapp.model.Patient;
 import com.siferga.webapp.model.User;
+import com.siferga.webapp.service.PatientServiceImpl;
 import com.siferga.webapp.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class UserController {
     private final UserServiceImpl userServiceImpl;
+    private final PatientServiceImpl patientServiceImpl;
 
     @GetMapping("/")
     public ModelAndView home(Model model) {
@@ -43,11 +46,17 @@ public class UserController {
         return new ModelAndView("/signup","user",new User());
     }
 
-    @GetMapping("/patients")
-    public String getUserLogin (Model model, UserDetails userDetails) {
-        String username = userDetails.getUsername();
-        return "patient/list";
+    @PostMapping("/addPatient")
+    public ModelAndView addPatientForm(@ModelAttribute Patient patient) {
+        patientServiceImpl.registerPatient(patient);
+        return new ModelAndView("/patientList","patient",new Patient());
     }
+
+//    @GetMapping("/patients")
+//    public String getUserLogin (Model model, UserDetails userDetails) {
+//        String username = userDetails.getUsername();
+//        return "patient/list";
+//    }
 
 
 }

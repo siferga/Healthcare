@@ -1,5 +1,6 @@
 package com.siferga.patient.controller;
 
+import com.siferga.patient.model.Patient;
 import com.siferga.patient.model.User;
 import com.siferga.patient.service.UserServiceImpl;
 import org.springframework.http.MediaType;
@@ -34,4 +35,6 @@ public class UserController {
 //    public String getBuildVersion() {
 //        return buildVersion;
 //    }
+
+
 }
