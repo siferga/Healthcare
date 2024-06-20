@@ -7,8 +7,18 @@ import java.util.List;
 
 @Service
 public interface IPatientService {
-    public List<Patient> getAllPatients();
-    public Patient findPatientByName(String patientName);
-    public Patient addPatient(Patient patient);
-    public Patient updatePatient(Patient patient);
+    public Patient registerPatient(Patient patient);
+    public List<Patient> findAllPatients();
+   // public Patient findPatientByName(String patientName);
+
+    Patient findPatientByUsername(String firstname);
+    //public Patient addPatient(Patient patient);
+    //public Patient updatePatient(Long id, Patient updatedPatient);
+
+
+    //    @Override
+    //    public Patient updatePatient(Patient patient) {
+    //        return null;
+    //    }
+
 }
