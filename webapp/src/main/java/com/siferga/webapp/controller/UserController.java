@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,10 +30,10 @@ public class UserController {
     public ModelAndView getLoginPage() {
         return new ModelAndView("/signin");
     }
-//    @GetMapping ("/logOut")
-//    public String logOut(){
-//        return "signin";
-//    }
+    @GetMapping ("/logOut")
+    public String logOut(){
+        return "signin";
+    }
 
     /*********************************** SIGNUP ******************************************/
 
@@ -46,17 +49,19 @@ public class UserController {
         return new ModelAndView("/signup","user",new User());
     }
 
-    @PostMapping("/addPatient")
-    public ModelAndView addPatientForm(@ModelAttribute Patient patient) {
-        patientServiceImpl.registerPatient(patient);
-        return new ModelAndView("/patientList","patient",new Patient());
-    }
-
-//    @GetMapping("/patients")
-//    public String getUserLogin (Model model, UserDetails userDetails) {
-//        String username = userDetails.getUsername();
-//        return "patient/list";
+//    @PostMapping("/addPatient")
+//    public ModelAndView addPatientForm(@ModelAttribute Patient patient) {
+//        patientServiceImpl.registerPatient(patient);
+//        return new ModelAndView("/patientList","patient",new Patient());
 //    }
+
+
+    /*************************   ADD A PATIENT   *****************************/
+
+    @GetMapping ("/addPatient")
+    public ModelAndView showAddPatientForm() {
+        return new ModelAndView("/addPatient","patient",new Patient());
+    }
 
 
 }
