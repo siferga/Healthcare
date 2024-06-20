@@ -1,9 +1,6 @@
 package com.siferga.patient.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -21,6 +18,7 @@ public class Patient {
     private String firstname;
     private String lastname;
     private LocalDate birthday;
+    @Column(unique = true)
     private String email;
     private String phone;
     private String gender;
