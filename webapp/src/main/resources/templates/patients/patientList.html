@@ -14,6 +14,7 @@
 <div class="container mt-5">
     <h2>Patient List</h2>
     <a href="/addPatient" class="btn btn-primary mb-3">Add New Patient</a>
+    <a href="/" class="btn btn-secondary mb-3">menu principal</a>
     <form action="#" th:action="@{/patientList}" th:object="${patient}" method="post">
     <table class="table">
         <thead>
@@ -30,6 +31,7 @@
         </thead>
         <tbody>
         <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
             <td th:text="${patient.firstname}"></td>
             <td th:text="${patient.lastname}"></td>
             <td th:text="${patient.birthday}"></td>
@@ -39,9 +41,9 @@
             <td th:text="${patient.address}"></td>
 
             <td>
-                <a th:href="@{/patients/patientDetails/{id}(id=${patient.id})}" class="btn btn-info">View</a>
-                <a th:href="@{/templates/patients/update/{id}(id=${patient.id})}" class="btn btn-warning">Edit</a>
-                <a th:href="@{/templates/patients/delete/{id}(id=${patient.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/patientDetails/{id}(id=${patient.id})}" class="btn btn-info">View</a>
+                <a th:href="@{/updatePatient/{id}(id=${patient.id})}" class="btn btn-warning">Edit</a>
+                <a th:href="@{/deletePatient/{id}(id=${patient.id})}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         </tbody>

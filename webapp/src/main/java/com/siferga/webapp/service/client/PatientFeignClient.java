@@ -35,7 +35,7 @@ public interface PatientFeignClient {
     @GetMapping(value = "/api/getAll",consumes = "application/json")
     public ResponseEntity<List<Patient>> getAllPatients();
 
-    @PostMapping(value = "/api/findPatientById",consumes = "application/json")
+    @GetMapping(value = "/api/findPatientById",consumes = "application/json")
     public ResponseEntity<Patient> findPatientById(@RequestParam Long id);
 
     @PutMapping(value = "/api/updatePatient",consumes = "application/json")
@@ -44,21 +44,8 @@ public interface PatientFeignClient {
     @DeleteMapping(value = "/api/deletePatient",consumes = "application/json")
     public void deletePatient(@RequestParam Long id);
 
-
 }
-//
-//
-//    @GetMapping(value = "/api/getAll",consumes = "application/json")
-//    public ResponseEntity<List<Patient>> getAllPatients();
-//
-//    @PostMapping(value = "/api/findPatientById",consumes = "application/json")
-//    public ResponseEntity<Patient> findPatientById(@RequestParam Long id);
-//
-//    @PutMapping(value = "/api/updatePatient",consumes = "application/json")
-//    public String updatePatient(@RequestParam Long id,Patient patient);
-//
-//    @DeleteMapping(value = "/api/deletePatient",consumes = "application/json")
-//    public void deletePatient(@RequestParam Long id);
+
 
 
 
