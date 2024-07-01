@@ -5,9 +5,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 //@Entity
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Patient {

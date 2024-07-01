@@ -23,11 +23,17 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
-    public Optional<Patient> findById(Integer id) {
+    public Optional<Patient> findById(Long id) {
         return patientRepository.findById(id);
     }
 
-    public void delete(Patient patient) {
-        patientRepository.delete(patient);
+    public String updatePatient(Long id, Patient patient) {
+        patientRepository.findById(id).get().getEmail().equals(patient.getEmail());
+        patientRepository.save(patient);
+        return "Patient updated";
+
+    }
+        public void deletePatient(Long id) {
+        patientRepository.deleteById(id);
     }
 }
