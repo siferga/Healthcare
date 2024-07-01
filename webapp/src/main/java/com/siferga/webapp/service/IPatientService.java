@@ -9,16 +9,13 @@ import java.util.List;
 public interface IPatientService {
     public Patient registerPatient(Patient patient);
     public List<Patient> findAllPatients();
-   // public Patient findPatientByName(String patientName);
-
-    Patient findPatientByUsername(String firstname);
+   // public Patient getPatientById(Long id);
+    //Patient findPatientByUsername(String firstname);
+    public Patient updatePatient(Long id, Patient updatedPatient);
+    //Patient findPatientByUsername(String firstname);
     //public Patient addPatient(Patient patient);
-    //public Patient updatePatient(Long id, Patient updatedPatient);
 
 
-    //    @Override
-    //    public Patient updatePatient(Patient patient) {
-    //        return null;
-    //    }
+
 
 }

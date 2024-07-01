@@ -34,41 +34,42 @@ public class PatientController {
     }
 
     // Get a single patient by ID
-    @GetMapping("/findPatientById/{id}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable Integer id) {
+    @GetMapping("/findPatientById")
+    public ResponseEntity<Patient> getPatientById(@RequestParam Long id) {
         Optional<Patient> patient = patientService.findById(id);
         return patient.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Update a patient
-    @PutMapping("/updatePatient/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable Integer id, @RequestBody Patient patientDetails) {
-        Optional<Patient> patientOptional = patientService.findById(id);
-        if (!patientOptional.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        Patient patient = patientOptional.get();
-        patient.setFirstname(patientDetails.getFirstname());
-        patient.setLastname(patientDetails.getLastname());
-        patient.setGender(patientDetails.getGender());
-        patient.setBirthday(patientDetails.getBirthday());
-        patient.setAddress(patientDetails.getAddress());
-        patient.setPhone(patientDetails.getPhone());
-        patient.setEmail(patientDetails.getEmail());
-        Patient updatedPatient = patientService.save(patient);
-        return ResponseEntity.ok(updatedPatient);
+//    @PutMapping("/updatePatient/{id}")
+//    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patientDetails) {
+//        Optional<Patient> patientOptional = patientService.findById(id);
+//        if (!patientOptional.isPresent()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        Patient patient = patientOptional.get();
+//        patient.setFirstname(patientDetails.getFirstname());
+//        patient.setLastname(patientDetails.getLastname());
+//        patient.setGender(patientDetails.getGender());
+//        patient.setBirthday(patientDetails.getBirthday());
+//        patient.setAddress(patientDetails.getAddress());
+//        patient.setPhone(patientDetails.getPhone());
+//        patient.setEmail(patientDetails.getEmail());
+//        Patient updatedPatient = patientService.updatePatient(id);
+//        return ResponseEntity.ok(updatedPatient);
+//    }
+
+    @PutMapping("/updatePatient")
+    public String updatePatient(@RequestParam(name = "id") Long id, @RequestBody Patient patient) {
+        return patientService.updatePatient(id, patient);
     }
 
     // Delete a patient
-    @DeleteMapping("/deletePatient/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable Integer id) {
-        Optional<Patient> patientOptional = patientService.findById(id);
-        if (!patientOptional.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        patientService.delete(patientOptional.get());
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/deletePatient")
+    public void deletePatient(@RequestParam(name = "id") Long id) {
+        patientService.deletePatient(id);
     }
+
 }
 
 

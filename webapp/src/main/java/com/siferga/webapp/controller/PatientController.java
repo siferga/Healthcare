@@ -6,10 +6,10 @@ import com.siferga.webapp.service.PatientServiceImpl;
 import com.siferga.webapp.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
@@ -23,14 +23,19 @@ public class PatientController {
 
     /*************************   ADD PATIENT   *****************************/
 
+    @GetMapping ("/addPatient")
+    public ModelAndView showAddPatientForm() {
+        return new ModelAndView("/patients/addPatient","patient",new Patient());
+    }
+
     @PostMapping("/addPatient")
     public ModelAndView addNewPatient(@ModelAttribute Patient patient) {
         patientServiceImpl.registerPatient(patient);
-        return new ModelAndView("/patientList","patient",new Patient());
+        return new ModelAndView("/patients/patientList","patient",new Patient());
     }
 
 
-    /*************************   PATIENT LIST   *****************************/
+  /***********   PATIENT LIST   *****************************/
 
 //    @PostMapping("/patientList")
 //    public ModelAndView showPatientList(@ModelAttribute Patient patient) {
@@ -45,25 +50,19 @@ public class PatientController {
 //        return new ModelAndView("/patientList");
 //    }
 //
-//    @GetMapping("/findAll")
-//    public List<Patient> getAllPatients(@RequestBody Patient patient) {
-//        return patientServiceImpl.findAllPatients();
-//    }
-
-    @PostMapping("/patientList")
-    public ModelAndView showPatientList(@ModelAttribute Patient patient) {
-        List<Patient> patients = patientServiceImpl.findAllPatients();
-        ModelAndView modelAndView = new ModelAndView("patientList");
-        modelAndView.addObject("patients", patients);
-        modelAndView.addObject("patient", new Patient());
-        return modelAndView;
-    }
 
     @GetMapping("/patientList")
     public ModelAndView showPatientList(Model model) {
         List<Patient> patients = patientServiceImpl.findAllPatients();
-        ModelAndView modelAndView = new ModelAndView("patientList");
+        return new ModelAndView("patients/patientList", "patients", patients);
+    }
+
+    @PostMapping("/patientList")
+    public ModelAndView showPatientList(@ModelAttribute Patient patient) {
+        List<Patient> patients = patientServiceImpl.findAllPatients();
+        ModelAndView modelAndView = new ModelAndView("patients/patientList");
         modelAndView.addObject("patients", patients);
+        modelAndView.addObject("patient", new Patient());
         return modelAndView;
     }
 
@@ -73,51 +72,51 @@ public class PatientController {
         return ResponseEntity.ok(patients);
     }
 
-
-
-
-//    @GetMapping("/patientList")
-//    public String showPatientList(Model model) {
-//        List<Patient> patients = patientServiceImpl.findAll();
-//        model.addAttribute("patients", patients);
-//        return "patientList"; // Name of the Thymeleaf template
+    //    @GetMapping("/findAll")
+//    public List<Patient> getAllPatients(@RequestBody Patient patient) {
+//        return patientServiceImpl.findAllPatients();
 //    }
-
 
     /*************************   FIND A PATIENT   *****************************/
 
-
-//    @PostMapping("/findPatientByUsername")
-//    public Patient findPatientByUsername(@RequestParam Patient patient) {
-//        return patientServiceImpl.findPatientByUsername();
-//    }
-
+    //getting users byID
+    @PostMapping("findPatientById")
+    public Patient getPatientById(@RequestParam Long id) {
+        return this.patientServiceImpl.findById(id);
+    }
 
     /*************************   UPDATE A PATIENT   *****************************/
 
-    @GetMapping ("/updatePatient")
-    public ModelAndView updatePatient() {
-        return new ModelAndView("/updatePatient");
+    @GetMapping ("/updatePatient/{id}")
+    public ModelAndView updatePatient(@PathVariable Long id) {
+        return new ModelAndView("/patients/patientList","patient",patientServiceImpl.findById(id));
     }
 
-    @GetMapping("/updatePatient/{id}")
-    public ModelAndView showUpdatePatientForm(@PathVariable("id") Long id) {
-        ModelAndView modelAndView = new ModelAndView("updatePatient");
-        Patient patient = patientServiceImpl.findById(id);
-        if (patient == null) {
-            modelAndView.setViewName("redirect:/patientList");
-            return modelAndView;
-        }
-        modelAndView.addObject("patient", patient);
-        return modelAndView;
+    // Handle form submission for updating a specific patient
+    @PostMapping("/updatePatient/{id}")
+    public ModelAndView updatePatient(@PathVariable("id") Long id, @ModelAttribute("patient") Patient patient) {
+        patientServiceImpl.updatePatient(id, patient);
+        return new ModelAndView ("/patients/updatePatient");
     }
 
-//    @PostMapping("/updatePatient/{id}")
-//    public ModelAndView updatePatient(@PathVariable("id") Long id, @ModelAttribute("patient") Patient patient) {
-//        ModelAndView modelAndView = new ModelAndView("updatePatient");
-//        patientServiceImpl.updatePatient(id,patient);
-//        modelAndView.setViewName("redirect:/patientDetail");
-//        return modelAndView;
+    /*************************   DELETE A PATIENT   *****************************/
+
+    // Show form for deleting a specific patient
+    @GetMapping("/deletePatient/{id}")
+    public ModelAndView showDeletePatientForm(@PathVariable("id") Long id) {
+        return new ModelAndView("/patients/deletePatient","patient",patientServiceImpl.findById(id));
+    }
+
+    // Deleting a patient
+    @PostMapping("/deletePatient/{id}")
+    public ModelAndView deletePatient(@PathVariable("id") Long id, @ModelAttribute("patient") Patient patient) {
+        patientServiceImpl.deletePatient(id);
+        return new ModelAndView("/patients/patientList");
+    }
+//    @DeleteMapping("/patients/deletePatient")
+//    public ModelAndView deletePatient(@RequestParam("id") Long id) {
+//        patientServiceImpl.deletePatient(id);
+//        return new ModelAndView("redirect:patients/patientList");
 //    }
 
 
