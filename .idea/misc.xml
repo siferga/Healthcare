@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/webapp/pom.xml" />
         <option value="$PROJECT_DIR$/patient/pom.xml" />
         <option value="$PROJECT_DIR$/docker-compose/pom.xml" />
+        <option value="$PROJECT_DIR$/notes/notes/pom.xml" />
+        <option value="$PROJECT_DIR$/note/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

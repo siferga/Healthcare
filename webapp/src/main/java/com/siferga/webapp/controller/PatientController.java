@@ -89,7 +89,7 @@ public class PatientController {
 
     @GetMapping ("/updatePatient/{id}")
     public ModelAndView updatePatient(@PathVariable Long id) {
-        return new ModelAndView("/patients/patientList","patient",patientServiceImpl.findById(id));
+        return new ModelAndView("/patients/updatePatient","patient",patientServiceImpl.findById(id));
     }
 
     // Handle form submission for updating a specific patient

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
         <module name="webapp" />
+        <module name="note" />
         <module name="configserver" />
         <module name="patient" />
       </profile>
@@ -24,6 +25,7 @@
       <module name="docker-compose" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="eurekaserver (1)" options="-parameters" />
+      <module name="note" options="-parameters" />
       <module name="patient" options="-parameters" />
       <module name="webapp" options="-parameters" />
     </option>

@@ -17,8 +17,19 @@ services:
     networks:
       - Healthcare-network
 
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
+    ports:
+      - 27018:27017
+    networks:
+      - Healthcare-network
+
   configserver:
-    image: siferga/configserver
+    image: siferga/configserver:latest
     container_name: configserver
     ports:
       - "8071:8071"
@@ -56,11 +67,27 @@ services:
     networks:
       - Healthcare-network
 
+  webapp:
+    image: siferga/webapp-healthcare
+    container_name: webapp
+    ports:
+      - "9010:9010"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    #    extends:
+    #      file: common-config.yml
+    #      service: microservice-configserver-config
+    environment:
+      SPRING_APPLICATION_NAME: "webapp"
+    networks:
+      - Healthcare-network
+
   patient:
-    image: siferga/patient
+    image: siferga/patient-healthcare
     container_name: patient
     ports:
-      - "9000:9000"
+      - "8080:8080"
     depends_on:
       configserver:
         condition: service_healthy
